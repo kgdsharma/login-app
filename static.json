@@ -1,8 +1,7 @@
 {
-    "root": "build/",
     "proxies": {
-      "/api/*": {
-        "origin": "https://salty-taiga-63704.herokuapp.com"
+      "/api/": {
+        "origin": "https://${API_APP_NAME}.herokuapp.com/"
       }
     }
   }
