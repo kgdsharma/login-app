@@ -3,7 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { dologin } from '../services/AuthService';
 
 class Login extends Component {
-	state = { username: '', phonenumber: '' };
+	state = { username: '', phonenumber: '', lat: '', lng: '' };
+
+	componentDidMount() {
+		
+		window.navigator.geolocation.getCurrentPosition((position)=>{
+			this.setState({lat:position.coords.latitude});
+			this.setState({lng:position.coords.longitude});
+		},(err)=>{console.log(err)},{});
+	}
 
 	onSubmit = (event) => {
 		event.preventDefault();

@@ -31,5 +31,11 @@ async function confirmlogin(sessionId, callback) {
 		callback(message);
 	}
 }
+async function userinfo(sessionId, callback) {
+	let url = '/api/userinfo?id=' + sessionId;
+	let response = await fetch(url);
+	let userinfo = await response.text();
+	callback(userinfo);
+}
 
-export { dologin, confirmlogin, authenticate };
+export { dologin, confirmlogin, authenticate, userinfo };
