@@ -38,4 +38,34 @@ async function userinfo(sessionId, callback) {
 	callback(userinfo);
 }
 
-export { dologin, confirmlogin, authenticate, userinfo };
+async function registerUser(username, callback){
+	const userName = {
+		userName:username
+	}
+	//console.log(JSON.stringify(request));
+	await axios.post('http://ec2-54-81-84-238.compute-1.amazonaws.com:8080/v1/user/register', {headers: {"Access-Control-Allow-Origin": "*"}},JSON.stringify(userName)).then((res) => {
+		console.log(JSON.stringify(res));
+		callback(JSON.stringify(res));
+	});
+}
+
+async function enrollVoiceSignature(request, callback){
+	var requestt = new XMLHttpRequest();
+	requestt.open("POST", "http://ec2-54-81-84-238.compute-1.amazonaws.com:8080/v1/user/enroll");
+	requestt.setRequestHeader("Access-Control-Allow-Origin", "*");
+	requestt.send(request);
+}
+
+async function verifyVoiceSignature(request, callback){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == XMLHttpRequest.DONE) {
+			callback(xhr.responseText);
+		}
+	}
+	xhr.open("POST", "http://ec2-54-81-84-238.compute-1.amazonaws.com:8080/v1/user/verify");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+	xhr.send(request);
+}
+
+export { dologin, confirmlogin, authenticate, userinfo, registerUser, enrollVoiceSignature, verifyVoiceSignature };
