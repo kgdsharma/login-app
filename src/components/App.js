@@ -13,7 +13,7 @@ import VoiceLogin from './VoiceLogin';
 class App extends Component {
 	render() {
 		return (
-			<div className="ui container" style={{marginTop:'100px'}}>
+			<div className="ui m6 container" style={{marginTop:'100px',width:'600px'}}>
 				<BrowserRouter>
 					<div>
 						<Switch>

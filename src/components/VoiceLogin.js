@@ -4,7 +4,8 @@ import { verifyVoiceSignature } from '../services/AuthService';
 import MediaStreamRecorder from 'msr';
 
 class VoiceLogin extends Component {
-	state = { username: '', loginFailed: ''};
+	state = { username: '', loginFailed: '', microphonestate:'', mphoneClass:'microphone huge icon'};
+	
     
 	navigate = () => {
 		this.props.history.push('/dashboard');
@@ -18,13 +19,14 @@ class VoiceLogin extends Component {
 
         navigator.getUserMedia(mediaConstraints,(stream)=>{
             const mediaRecorder = new MediaStreamRecorder(stream);
-            mediaRecorder.mimeType = 'audio/wav';
+			mediaRecorder.mimeType = 'audio/wav';
+			this.setState({microphonestate:'inactive'});
+			this.toggleMicrofone();
             mediaRecorder.ondataavailable =  (blob) =>{
                 blob.lastModifiedDate = new Date();
                 blob.name = 'verifysignature.wav';
 
-                 var bodyFormData = new FormData();
-                 console.log('userid>> ', this.state.username);
+                var bodyFormData = new FormData();
                  bodyFormData.append('userId', this.state.username);
                  bodyFormData.append('phrase', 'Login for secure services please');
                  bodyFormData.append('recording', blob);               
@@ -35,7 +37,9 @@ class VoiceLogin extends Component {
                         this.navigate();
                         this.setState({loginFailed:false})
                     }else{
-                        this.setState({loginFailed:true});
+						this.setState({loginFailed:true});
+						this.setState({microphonestate:'active'})
+						this.toggleMicrofone();
                     }
                     console.log('Verify Response', res);
                 })
@@ -46,15 +50,24 @@ class VoiceLogin extends Component {
             console.log(err);
         })
 
-    }
+	}
+	
+	toggleMicrofone = ()=>{
+		if (this.state.microphonestate === 'inactive'){
+			this.setState({mphoneClass:'spinner huge icon'})
+		} else{
+			this.setState({mphoneClass:'microphone huge icon'})
+		}
+	}
 
 	render() {
-        if(this.state.loginFailed){
+		if(this.state.loginFailed)
+		{
             return(
 
                 <div className="ui segment ">
 				<div className="header">
-					<h2>Login with you voice</h2>
+					<h2>Login with your voice</h2>
 				</div><br/>
                 <div className="ui compact message">
 					<h3>Voice Authentication is failed ! Please re-try</h3>
@@ -71,7 +84,7 @@ class VoiceLogin extends Component {
 						/>
 					</div>
 					<div className="field"></div>
-                    <i className='microphone huge icon' style = {{marginLeft:'150px'}} onClick={this.record}></i>
+                    <i className={this.state.mphoneClass} style = {{marginLeft:'70px'}} onClick={this.record}></i>
 				</form>
 			</div>
 
@@ -80,7 +93,7 @@ class VoiceLogin extends Component {
 		return (
 			<div className="ui segment ">
 				<div className="header">
-					<h2>Login with you voice</h2>
+					<h2>Login with your voice</h2>
 				</div>
 				<br />
 				<form className="ui form">
@@ -94,7 +107,7 @@ class VoiceLogin extends Component {
 						/>
 					</div>
 					<div className="field"></div>
-                    <i className='microphone huge icon' style = {{marginLeft:'150px'}} onClick={this.record}></i>
+                    <i className={this.state.mphoneClass} style = {{marginLeft:'70px'}} onClick={this.record}></i>
 				</form>
 			</div>
 		);

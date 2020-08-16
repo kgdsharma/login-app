@@ -35,6 +35,7 @@ import { registerUser, enrollVoiceSignature } from '../services/AuthService';
                     console.log(res);
                 })
                 mediaRecorder.stop();
+                
             }
             mediaRecorder.start(5000);
         },(err)=>{
