@@ -43,7 +43,7 @@ async function registerUser(username, callback){
 		userName:username
 	}
 	//console.log(JSON.stringify(request));
-	await axios.post('http://ec2-54-81-84-238.compute-1.amazonaws.com:8080/v1/user/register', {headers: {"Access-Control-Allow-Origin": "*"}},JSON.stringify(userName)).then((res) => {
+	await axios.post('https://bank97-voice-api.herokuapp.com/v1/user/register', {headers: {"Access-Control-Allow-Origin": "*"}},JSON.stringify(userName)).then((res) => {
 		console.log(JSON.stringify(res));
 		callback(JSON.stringify(res));
 	});
@@ -51,7 +51,7 @@ async function registerUser(username, callback){
 
 async function enrollVoiceSignature(request, callback){
 	var requestt = new XMLHttpRequest();
-	requestt.open("POST", "http://ec2-54-81-84-238.compute-1.amazonaws.com:8080/v1/user/enroll");
+	requestt.open("POST", "https://bank97-voice-api.herokuapp.com/v1/user/enroll");
 	requestt.setRequestHeader("Access-Control-Allow-Origin", "*");
 	requestt.send(request);
 }
@@ -63,7 +63,7 @@ async function verifyVoiceSignature(request, callback){
 			callback(xhr.responseText);
 		}
 	}
-	xhr.open("POST", "http://ec2-54-81-84-238.compute-1.amazonaws.com:8080/v1/user/verify");
+	xhr.open("POST", "https://bank97-voice-api.herokuapp.com/v1/user/verify");
 	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
 	xhr.send(request);
 }
