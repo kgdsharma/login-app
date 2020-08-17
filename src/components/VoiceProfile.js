@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { Component } from 'react';
 import MediaStreamRecorder from 'msr';
 import { registerUser, enrollVoiceSignature } from '../services/AuthService';
@@ -71,36 +73,34 @@ class VoiceProfile extends Component {
 	};
 	render() {
 		return (
-			<div className="ui segment ">
-				<div className="header">
+			<div className='ui segment '>
+				<div className='header'>
 					<h2>Voice Profile</h2>
 				</div>
 				<div
-					className="ui cards"
-					style={{ marginTop: '70px', marginLeft: '150px' }}
-				>
+					className='ui cards'
+					style={{ marginTop: '70px', marginLeft: '150px' }}>
 					<div
-						className="cards"
-						style={{ marginTop: '50px', marginLeft: '30px' }}
-					>
-						<div class="ui label">
-							<i class="user circle large icon"></i>
+						className='cards'
+						style={{ marginTop: '50px', marginLeft: '30px' }}>
+						<div class='ui label'>
+							<i class='user circle large icon'></i>
 							{this.state.userid}
 						</div>
 						<br />
 						<br />
-						<div class="ui label"> Please record the phrase 3 times.</div>
+						<div class='ui label'> Please record the phrase 3 times.</div>
 
-						<div class="ui list">
-							<div class="item">
+						<div class='ui list'>
+							<div class='item'>
 								<i class={this.state.phrase1icon}></i>Login for secure services
 								please.
 							</div>
-							<div class="item">
+							<div class='item'>
 								<i class={this.state.phrase2icon}></i>Login for secure services
 								please.
 							</div>
-							<div class="item">
+							<div class='item'>
 								<i class={this.state.phrase3icon}></i>Login for secure services
 								please.
 							</div>
@@ -109,8 +109,7 @@ class VoiceProfile extends Component {
 							<i
 								className={this.state.mfoneclass}
 								style={{ color: '#FF8000' }}
-								onClick={this.record}
-							></i>
+								onClick={this.record}></i>
 						</div>
 					</div>
 				</div>
