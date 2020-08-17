@@ -41,9 +41,9 @@ class VoiceLogin extends Component {
 						this.setState({microphonestate:'active'})
 						this.toggleMicrofone();
                     }
-                    console.log('Verify Response', res);
+					console.log('Verify Response', res);
                 })
-                mediaRecorder.stop();
+                mediaRecorder.stop(6000);
             }
             mediaRecorder.start(5000);
         },(err)=>{
@@ -67,12 +67,12 @@ class VoiceLogin extends Component {
 
                 <div className="ui segment ">
 				<div className="header">
-					<h2>Login with your voice</h2>
+					<h2>Voice Login</h2>
 				</div><br/>
-                <div className="ui compact message">
-					<h3>Voice Authentication is failed ! Please re-try</h3>
+                <div style={{color:'#B40404'}}>
+					<h5>Voice isn't recognized. Please try again !</h5>
 				</div>
-				<br />
+				<br /><br/>
 				<form className="ui form">
 					<div className="six wide field">
 						<input
@@ -84,7 +84,7 @@ class VoiceLogin extends Component {
 						/>
 					</div>
 					<div className="field"></div>
-                    <i className={this.state.mphoneClass} style = {{marginLeft:'70px'}} onClick={this.record}></i>
+                    <i className={this.state.mphoneClass} style = {{marginLeft:'70px', color:'#FF8000'}} onClick={this.record}></i>
 				</form>
 			</div>
 
@@ -93,7 +93,7 @@ class VoiceLogin extends Component {
 		return (
 			<div className="ui segment ">
 				<div className="header">
-					<h2>Login with your voice</h2>
+					<h2>Voice Login</h2>
 				</div>
 				<br />
 				<form className="ui form">
@@ -107,7 +107,7 @@ class VoiceLogin extends Component {
 						/>
 					</div>
 					<div className="field"></div>
-                    <i className={this.state.mphoneClass} style = {{marginLeft:'70px'}} onClick={this.record}></i>
+                    <i className={this.state.mphoneClass} style = {{marginLeft:'70px', color:'#FF8000'}} onClick={this.record}></i>
 				</form>
 			</div>
 		);
