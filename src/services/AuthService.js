@@ -38,34 +38,57 @@ async function userinfo(sessionId, callback) {
 	callback(userinfo);
 }
 
-async function registerUser(username, callback){
+async function registerUser(username, callback) {
 	const userName = {
-		userName:username
-	}
+		userName: username,
+	};
 	//console.log(JSON.stringify(request));
-	await axios.post('https://bank97-voice-api.herokuapp.com/v1/user/register', {headers: {"Access-Control-Allow-Origin": "*"}},JSON.stringify(userName)).then((res) => {
-		console.log(JSON.stringify(res));
-		callback(JSON.stringify(res));
-	});
+	await axios
+		.post(
+			'https://bank97-voice-api.herokuapp.com/v1/user/register',
+			{ headers: { 'Access-Control-Allow-Origin': '*' } },
+			JSON.stringify(userName)
+		)
+		.then((res) => {
+			console.log(JSON.stringify(res));
+			callback(JSON.stringify(res));
+		});
 }
 
-async function enrollVoiceSignature(request, callback){
+async function enrollVoiceSignature(request, callback) {
 	var requestt = new XMLHttpRequest();
-	requestt.open("POST", "https://bank97-voice-api.herokuapp.com/v1/user/enroll");
-	requestt.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+	requestt.onreadystatechange = function () {
+		if (requestt.readyState == XMLHttpRequest.DONE) {
+			callback(requestt.responseText);
+		}
+	};
+	requestt.open(
+		'POST',
+		'https://bank97-voice-api.herokuapp.com/v1/user/enroll'
+	);
+	requestt.setRequestHeader('Access-Control-Allow-Origin', '*');
 	requestt.send(request);
 }
 
-async function verifyVoiceSignature(request, callback){
+async function verifyVoiceSignature(request, callback) {
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
+	xhr.onreadystatechange = function () {
 		if (xhr.readyState == XMLHttpRequest.DONE) {
 			callback(xhr.responseText);
 		}
-	}
-	xhr.open("POST", "https://bank97-voice-api.herokuapp.com/v1/user/verify");
-	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+	};
+	xhr.open('POST', 'https://bank97-voice-api.herokuapp.com/v1/user/verify');
+	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xhr.send(request);
 }
 
-export { dologin, confirmlogin, authenticate, userinfo, registerUser, enrollVoiceSignature, verifyVoiceSignature };
+export {
+	dologin,
+	confirmlogin,
+	authenticate,
+	userinfo,
+	registerUser,
+	enrollVoiceSignature,
+	verifyVoiceSignature,
+};
