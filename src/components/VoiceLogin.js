@@ -45,7 +45,7 @@ class VoiceLogin extends Component {
                 })
                 mediaRecorder.stop(6000);
             }
-            mediaRecorder.start(5000);
+            mediaRecorder.start(2000);
         },(err)=>{
             console.log(err);
         })
