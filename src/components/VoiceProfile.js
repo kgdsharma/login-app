@@ -40,12 +40,13 @@ class VoiceProfile extends Component {
 					bodyFormData.append('userId', this.state.userid);
 					bodyFormData.append('phrase', 'Login for secure services please');
 					bodyFormData.append('recording', blob);
-					this.setState({ mfoneclass: 'microphone huge icon' });
+					
 					enrollVoiceSignature(bodyFormData, (res) => {
 						const voiceSignatureEnrollmentResponse = JSON.parse(res);
 						if (voiceSignatureEnrollmentResponse.responseCode === 'SUCC') {
 							this.togglePhraseIcon();
 						}
+						this.toggleMicrofone();
 						console.log('enrollment response', res);
 					});
 					mediaRecorder.stop();
@@ -71,6 +72,9 @@ class VoiceProfile extends Component {
 		const setCount = this.state.count + 1;
 		this.setState({ count: setCount });
 	};
+	toggleMicrofone=()=>{
+		this.setState({ mfoneclass: 'microphone huge icon' });
+	}
 	render() {
 		return (
 			<div className='ui segment '>
@@ -84,12 +88,12 @@ class VoiceProfile extends Component {
 						className='cards'
 						style={{ marginTop: '50px', marginLeft: '30px' }}>
 						<div class='ui label'>
-							<i class='user circle large icon'></i>
+							<i class='user circle big icon' style={{ color: '#FFBF00' }}></i>
 							{this.state.userid}
 						</div>
 						<br />
 						<br />
-						<div class='ui label'> Please record the phrase 3 times.</div>
+						<div class='ui label' > <i class="info circle large icon" style={{ color: '#0B6121' }}></i>Please record the phrase three times.</div>
 
 						<div class='ui list'>
 							<div class='item'>
@@ -105,10 +109,10 @@ class VoiceProfile extends Component {
 								please.
 							</div>
 						</div>
-						<div style={{ marginTop: '200px', marginLeft: '80px' }}>
+						<div style={{ marginTop: '150px', marginLeft: '80px' }}>
 							<i
 								className={this.state.mfoneclass}
-								style={{ color: '#FF8000' }}
+								style={{ color: '#FFBF00' }}
 								onClick={this.record}></i>
 						</div>
 					</div>

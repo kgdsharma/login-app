@@ -94,7 +94,7 @@ class VoiceLogin extends Component {
 						<div className='field'></div>
 						<i
 							className={this.state.mphoneClass}
-							style={{ marginLeft: '70px', color: '#FF8000' }}
+							style={{ marginLeft: '70px', color: '#FFBF00' }}
 							onClick={this.record}></i>
 					</form>
 				</div>
@@ -119,7 +119,7 @@ class VoiceLogin extends Component {
 					<div className='field'></div>
 					<i
 						className={this.state.mphoneClass}
-						style={{ marginLeft: '70px', color: '#FF8000' }}
+						style={{ marginLeft: '70px', color: '#FFBF00' }}
 						onClick={this.record}></i>
 				</form>
 			</div>
