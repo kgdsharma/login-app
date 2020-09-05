@@ -6,6 +6,10 @@
     "proxies": {
       "/api/*": {
         "origin": "https://${API_APP_NAME}.herokuapp.com/api"
+      },
+      "/oauth/*": {
+        "origin": "https://sharmakg-eval-test.apigee.net/oidc-core/oauth2"
       }
+
     }
   }
