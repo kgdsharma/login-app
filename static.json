@@ -12,12 +12,9 @@
 		},
 		"/account-login/*": {
 			"origin": "https://oidc-login-app.herokuapp.com/login"
-    },
+		},
 		"/validateLoginAndConsent/*": {
 			"origin": "https://oidc-login-app.herokuapp.com/validateLoginAndConsent"
 		}
 	}
 }
-
-
-/validateLoginAndConsent
