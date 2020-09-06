@@ -1,15 +1,17 @@
 {
-    "root":"build/",
-    "routes": {
-        "/**": "index.html"
-      },
-    "proxies": {
-      "/api/*": {
-        "origin": "https://${API_APP_NAME}.herokuapp.com/api"
-      },
-      "/oauth/*": {
-        "origin": "https://sharmakg-eval-test.apigee.net/oidc-core/oauth2"
-      }
-
-    }
-  }
+	"root": "build/",
+	"routes": {
+		"/**": "index.html"
+	},
+	"proxies": {
+		"/api/*": {
+			"origin": "https://${API_APP_NAME}.herokuapp.com/api"
+		},
+		"/oauth/*": {
+			"origin": "https://sharmakg-eval-test.apigee.net/oidc-core/oauth2"
+		},
+		"/account-login/*": {
+			"origin": "https://oidc-login-app.herokuapp.com/login"
+		}
+	}
+}
