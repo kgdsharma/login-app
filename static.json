@@ -7,7 +7,7 @@
 		"/api/*": {
 			"origin": "https://${API_APP_NAME}.herokuapp.com/api"
 		},
-		"/voice/*": {
+		"/voice-api/*": {
 			"origin": "https://${VOICE_API_APP_NAME}.herokuapp.com"
 		},
 		"/oauth/*": {

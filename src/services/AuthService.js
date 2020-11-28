@@ -49,7 +49,7 @@ async function registerUser(username, callback) {
 	//console.log(JSON.stringify(request));
 	await axios
 		.post(
-			'/voice/v1/user/register',
+			'/voice-api/v1/user/register',
 			{ headers: { 'Access-Control-Allow-Origin': '*' } },
 			JSON.stringify(userName)
 		)
@@ -69,7 +69,7 @@ async function enrollVoiceSignature(request, callback) {
 	};
 	requestt.open(
 		'POST',
-		'/voice/v1/user/enroll'
+		'/voice-api/v1/user/enroll'
 	);
 	requestt.setRequestHeader('Access-Control-Allow-Origin', '*');
 	requestt.send(request);
@@ -82,7 +82,7 @@ async function verifyVoiceSignature(request, callback) {
 			callback(xhr.responseText);
 		}
 	};
-	xhr.open('POST', '/voice/v1/user/verify');
+	xhr.open('POST', '/voice-api/v1/user/verify');
 	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xhr.send(request);
 }
