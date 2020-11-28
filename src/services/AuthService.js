@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
+const VOICE_API = process.env.VOICE_API_BASE_URL
+
 async function dologin(request, sessionId) {
 	await axios.post('/api/auth', request).then((res) => {
 		sessionId(res.data);
@@ -47,7 +49,7 @@ async function registerUser(username, callback) {
 	//console.log(JSON.stringify(request));
 	await axios
 		.post(
-			'https://bank97-voice-api.herokuapp.com/v1/user/register',
+			VOICE_API+'/v1/user/register',
 			{ headers: { 'Access-Control-Allow-Origin': '*' } },
 			JSON.stringify(userName)
 		)
@@ -67,7 +69,7 @@ async function enrollVoiceSignature(request, callback) {
 	};
 	requestt.open(
 		'POST',
-		'https://bank97-voice-api.herokuapp.com/v1/user/enroll'
+		VOICE_API+'/v1/user/enroll'
 	);
 	requestt.setRequestHeader('Access-Control-Allow-Origin', '*');
 	requestt.send(request);
@@ -80,7 +82,7 @@ async function verifyVoiceSignature(request, callback) {
 			callback(xhr.responseText);
 		}
 	};
-	xhr.open('POST', 'https://bank97-voice-api.herokuapp.com/v1/user/verify');
+	xhr.open('POST', VOICE_API+'/v1/user/verify');
 	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 	xhr.send(request);
 }
