@@ -86,8 +86,8 @@ async function verifyVoiceSignature(request, callback) {
 
 async function updateOIDCSession(username, interactionId, callback) {
 	const authXR = {
-		username: username,
-		authenticated: true,
+		"username": "username",
+		"authenticated": "I do not know",
 	};
 	const state_manager = '/state-manager/api/interaction/' + interactionId;
 
@@ -101,7 +101,11 @@ async function updateOIDCSession(username, interactionId, callback) {
 					'Content-Type': 'application/json',
 				},
 			},
-			JSON.stringify(authXR)
+			{
+				"username": "Awesome",
+				"authenticated": "maybe",
+			}
+			
 		)
 		.then((res) => {
 			console.log(JSON.stringify(res));
