@@ -102,8 +102,9 @@ async function updateOIDCSession(username, interactionId, callback) {
 				},
 			},
 			{
-				"username": "Awesome",
-				"authenticated": "maybe",
+				"authenticated":true,
+				"username":"Krishna",
+				"scope":"login registration"
 			}
 			
 		)
