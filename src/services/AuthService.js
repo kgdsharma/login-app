@@ -89,15 +89,15 @@ async function updateOIDCSession(username, interactionId, callback) {
 		username: username,
 		authenticated: true,
 	};
+	const state_manager = '/state-manager/api/interaction/' + interactionId;
 
 	console.log('SESSION UPDATE Request >>> ', JSON.stringify(authXR));
 
 	axios
 		.post(
-			'/state-manager/api/interaction/' + interactionId,
+			state_manager,
 			{
 				headers: {
-					'Access-Control-Allow-Origin': '*',
 					'Content-Type': 'application/json',
 				},
 			},
