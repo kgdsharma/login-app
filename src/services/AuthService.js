@@ -86,28 +86,19 @@ async function verifyVoiceSignature(request, callback) {
 
 async function updateOIDCSession(username, interactionId, callback) {
 	const authXR = {
-		"username": "username",
-		"authenticated": "I do not know",
+		username: 'username',
+		authenticated: 'I do not know',
 	};
 	const state_manager = '/state-manager/api/interaction/' + interactionId;
 
 	console.log('SESSION UPDATE Request >>> ', JSON.stringify(authXR));
 
 	axios
-		.post(
-			state_manager,
-			{
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			},
-			{
-				"authenticated":true,
-				"username":"Krishna",
-				"scope":"login registration"
-			}
-			
-		)
+		.post('/state-manager/api/interaction/' + interactionId, {
+			authenticated: true,
+			username: 'Krishna',
+			scope: 'login registration',
+		})
 		.then((res) => {
 			console.log(JSON.stringify(res));
 			callback(JSON.stringify(res));
