@@ -26,8 +26,8 @@ class OIDCLoginConfirm extends Component {
 	}
 
 	navigate = () => {
-		window.location.href = 'https://myfinance97.herokuapp.com';
-		//this.props.history.push('/dashboard');
+		//window.location.href = 'https://myfinance97.herokuapp.com';
+		this.props.history.push('/dashboard');
 	};
 
 	render() {
