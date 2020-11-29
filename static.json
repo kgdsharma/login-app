@@ -17,7 +17,7 @@
 			"origin": "https://sharmakg-eval-test.apigee.net/oidc-core/oauth2"
 		},
 		"/oauth2/*": {
-			"origin": "http://devkgd-eval-test.apigee.net/oauth2"
+			"origin": "https://devkgd-eval-test.apigee.net/oauth2"
 		},
 		"/account-login/*": {
 			"origin": "https://oidc-login-app.herokuapp.com/login"
