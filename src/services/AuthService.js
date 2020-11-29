@@ -90,10 +90,19 @@ async function updateOIDCSession(username, interactionId, callback) {
 		authenticated: true,
 	};
 
-	console.log("SESSION UPDATE Request >>> ", JSON.stringify(authXR));
+	console.log('SESSION UPDATE Request >>> ', JSON.stringify(authXR));
 
 	axios
-		.post('/state-manager/api/interaction/' + interactionId, JSON.stringify(authXR))
+		.post(
+			'/state-manager/api/interaction/' + interactionId,
+			{
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+					'Content-Type': 'application/json',
+				},
+			},
+			JSON.stringify(authXR)
+		)
 		.then((res) => {
 			console.log(JSON.stringify(res));
 			callback(JSON.stringify(res));
@@ -108,6 +117,5 @@ export {
 	registerUser,
 	enrollVoiceSignature,
 	verifyVoiceSignature,
-	updateOIDCSession
-
+	updateOIDCSession,
 };
