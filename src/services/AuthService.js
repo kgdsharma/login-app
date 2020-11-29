@@ -90,6 +90,8 @@ async function updateOIDCSession(username, interactionId, callback) {
 		authenticated: true,
 	};
 
+	console.log("SESSION UPDATE Request >>> ", JSON.stringify(authXR));
+
 	axios
 		.post('/state-manager/api/interaction/' + interactionId, JSON.stringify(authXR))
 		.then((res) => {
