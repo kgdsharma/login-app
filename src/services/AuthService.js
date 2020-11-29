@@ -96,8 +96,7 @@ async function updateOIDCSession(username, interactionId, callback) {
 	axios
 		.post('/state-manager/api/interaction/' + interactionId, {
 			authenticated: true,
-			username: 'Krishna',
-			scope: 'login registration',
+			username: username,
 		})
 		.then((res) => {
 			console.log(JSON.stringify(res));

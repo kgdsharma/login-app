@@ -4,23 +4,29 @@
 //show the page and continue to confirm Login success.
 
 import React, { Component } from 'react';
-import { confirmlogin } from '../services/AuthService';
+import { confirmlogin, userinfo } from '../services/AuthService';
 import { updateOIDCSession } from '../services/AuthService';
 
 class OIDCLoginConfirm extends Component {
 	componentDidMount() {
 		confirmlogin(this.props.match.params.sid, (data) => {
 			if (data === 'Authenticated') {
-				updateOIDCSession('Krishna', this.props.match.params.intrid, (data) => {
-					console.log('Interaction is updated  >> ', data);
+				userinfo(this.props.match.params.sid, (res) => {
+					let user = JSON.parse(res);
+					updateOIDCSession(
+						user.username,
+						this.props.match.params.intrid,
+						(data) => {
+							this.navigate();
+						}
+					);
 				});
-				this.navigate();
 			}
 		});
 	}
 
 	navigate = () => {
-		window.location.href = 'https://myfinance97.herokuapp.com'
+		window.location.href = 'https://myfinance97.herokuapp.com';
 		//this.props.history.push('/dashboard');
 	};
 
