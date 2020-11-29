@@ -33,7 +33,7 @@ class OIDCLogin extends Component {
 		this.props.history.push(
 			'/login/confirm/' +
 				confirmation +
-				'/interaction' +
+				'/interaction/' +
 				this.props.match.params.intrid
 		);
 	};
