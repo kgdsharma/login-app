@@ -10,6 +10,9 @@
 		"/voice-api/*": {
 			"origin": "https://${VOICE_API_APP_NAME}.herokuapp.com"
 		},
+		"/state-manager/*": {
+			"origin": "https://${IDP_STATE_MANAGER_API_APP_NAME}.herokuapp.com"
+		},
 		"/oauth/*": {
 			"origin": "https://sharmakg-eval-test.apigee.net/oidc-core/oauth2"
 		},

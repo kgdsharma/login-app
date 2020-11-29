@@ -67,10 +67,7 @@ async function enrollVoiceSignature(request, callback) {
 			callback(requestt.responseText);
 		}
 	};
-	requestt.open(
-		'POST',
-		'/voice-api/v1/user/enroll'
-	);
+	requestt.open('POST', '/voice-api/v1/user/enroll');
 	requestt.setRequestHeader('Access-Control-Allow-Origin', '*');
 	requestt.send(request);
 }
@@ -87,6 +84,20 @@ async function verifyVoiceSignature(request, callback) {
 	xhr.send(request);
 }
 
+async function updateOIDCSession(username, interactionId, callback) {
+	const authXR = {
+		username: username,
+		authenticated: true,
+	};
+
+	axios
+		.post('/state-manager/api/interaction/' + interactionId, JSON.stringify(authXR))
+		.then((res) => {
+			console.log(JSON.stringify(res));
+			callback(JSON.stringify(res));
+		});
+}
+
 export {
 	dologin,
 	confirmlogin,
@@ -95,4 +106,6 @@ export {
 	registerUser,
 	enrollVoiceSignature,
 	verifyVoiceSignature,
+	updateOIDCSession
+
 };
