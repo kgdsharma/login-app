@@ -100,6 +100,7 @@ async function updateOIDCSession(username, interactionId, callback) {
 async function getOIDCSession(interactionId, callback){
 	axios.get('/state-manager/api/interaction/' + interactionId)
 	.then(res=>{
+		console.log(">>>>  "+JSON.stringify(res));
 		callback(res);
 	})
 
