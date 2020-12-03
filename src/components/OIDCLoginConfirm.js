@@ -27,7 +27,7 @@ class OIDCLoginConfirm extends Component {
 
 	navigate = () => {
 		getOIDCSession(this.props.match.params.intrid, (res)=>{
-			const redirect = res.AuthorizationRequest.appBaseUrl;
+			const redirect = AuthorizationRequest.appBaseUrl;
 			window.location.href = redirect;
 		})
 		//window.location.href = 'https://myfinance97.herokuapp.com';
