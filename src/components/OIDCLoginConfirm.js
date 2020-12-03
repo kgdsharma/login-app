@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { confirmlogin, userinfo } from '../services/AuthService';
-import { updateOIDCSession } from '../services/AuthService';
+import { updateOIDCSession, getOIDCSession } from '../services/AuthService';
 
 class OIDCLoginConfirm extends Component {
 	componentDidMount() {
@@ -26,8 +26,12 @@ class OIDCLoginConfirm extends Component {
 	}
 
 	navigate = () => {
+		getOIDCSession(this.props.match.params.intrid, (res)=>{
+			const redirect = res.AuthorizationRequest.appBaseUrl;
+			window.location.href = redirect;
+		})
 		//window.location.href = 'https://myfinance97.herokuapp.com';
-		this.props.history.push('/dashboard');
+		//this.props.history.push('/dashboard');
 	};
 
 	render() {

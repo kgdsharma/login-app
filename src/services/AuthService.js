@@ -23,7 +23,9 @@ async function confirmlogin(sessionId, callback) {
 	let response = await fetch(url);
 
 	if (response.status == 404) {
-		await confirmlogin(sessionId, callback);
+		setTimeout(() => { 
+			await confirmlogin(sessionId, callback);  
+		}, 5000);
 	} else if (response.status != 200) {
 		let message = await response.text();
 		console.log(message);
@@ -85,23 +87,22 @@ async function verifyVoiceSignature(request, callback) {
 }
 
 async function updateOIDCSession(username, interactionId, callback) {
-	const authXR = {
-		username: 'username',
-		authenticated: 'I do not know',
-	};
-	const state_manager = '/state-manager/api/interaction/' + interactionId;
-
-	console.log('SESSION UPDATE Request >>> ', JSON.stringify(authXR));
-
 	axios
 		.post('/state-manager/api/interaction/' + interactionId, {
 			authenticated: true,
 			username: username,
 		})
 		.then((res) => {
-			console.log(JSON.stringify(res));
 			callback(JSON.stringify(res));
 		});
+}
+
+async function getOIDCSession(interactionId, callback){
+	axios.get('/state-manager/api/interaction/' + interactionId)
+	.then(res=>{
+		callback(res);
+	})
+
 }
 
 export {
@@ -113,4 +114,5 @@ export {
 	enrollVoiceSignature,
 	verifyVoiceSignature,
 	updateOIDCSession,
+	getOIDCSession
 };
