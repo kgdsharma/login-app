@@ -24,7 +24,7 @@ async function confirmlogin(sessionId, callback) {
 
 	if (response.status == 404) {
 		setTimeout(() => { 
-			await confirmlogin(sessionId, callback);  
+			confirmlogin(sessionId, callback);  
 		}, 5000);
 	} else if (response.status != 200) {
 		let message = await response.text();
